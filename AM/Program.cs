@@ -14,7 +14,7 @@ namespace AM
     class None : Shape { }
 
 
-    class Program
+    class Solution
     {
 
 
@@ -59,12 +59,12 @@ namespace AM
                 }
             }
 
-            for (int x = 0; x < rows; x++)
-            {
-                for (int y = 0; y < col; y++)
-                    Console.Write(area[x, y].Value ? "1" : "0");
-                Console.WriteLine();
-            }
+            //for (int x = 0; x < rows; x++)
+            //{
+            //    for (int y = 0; y < col; y++)
+            //        Console.Write(area[x, y].Value ? "1" : "0");
+            //    Console.WriteLine();
+            //}
             List<Shape> shapes = new List<Shape>();
             for (int x = 0; x < rows; x++)
             {
