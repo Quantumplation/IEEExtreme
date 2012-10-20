@@ -31,7 +31,8 @@ namespace AM
             {
                 Console.Write(s.GetType().Name + ", ");
             }
-            Console.WriteLine(arrs.Last().GetType().Name);
+            if(arrs.Count > 0)
+                Console.WriteLine(arrs.Last().GetType().Name);
         }
 
         struct State
@@ -343,6 +344,43 @@ namespace AM
                                 consumeLine(x + (rightDown - 1), y - (rightDown - 1), 1, 1, lastSide, area);
                                 return new Triangle();
                             }
+                        }
+                    }
+                }
+            }
+
+            if (leftDown > 1 && rightDown > 1)
+            {
+                int leftSide = scanLine(width, height, x + (rightDown - 1), y - (rightDown - 1), 1, 1, area);
+                if (leftSide == leftDown)
+                {
+                    int rightSide = scanLine(width, height, x + (leftDown - 1), y + (leftDown - 1), 1, -1, area);
+                    if (rightSide == rightDown)
+                    {
+                        consumeLine(x, y, 1, 1, leftDown, area);
+                        consumeLine(x, y, 1, -1, rightDown, area);
+                        consumeLine(x + rightDown - 1, y - (rightDown - 1), 1, 1, leftSide, area);
+                        consumeLine(x + leftDown - 1, y + leftDown - 1, 1, -1, rightSide, area);
+                        if (leftDown == rightDown)
+                        {
+                            //
+                            //    /\
+                            //   /  \
+                            //   \  /
+                            //    \/
+                            //
+                            return new Square();
+                        }
+                        else
+                        {
+                            //
+                            //    /\
+                            //   /  \
+                            //   \   \
+                            //    \  /
+                            //     \/
+                            //
+                            return new Rectangle();
                         }
                     }
                 }
